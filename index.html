@@ -8,20 +8,18 @@
 </head>
 <body>
 
-<!-- Theme Toggle -->
-<button class="theme-toggle" id="themeToggle">🌙</button>
-
 <header>
-  <nav class="navbar">
-    <div class="logo">MyPortfolio</div>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li> 
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <nav>
+  <a href="#home" class="active">Home</a>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+  <div class="toggle-btn" onclick="toggleMode()">
+    <i class="fas fa-moon"></i>
+  </div>
+</nav>
+
 
   <div class="hero fade-in">
     <h1>Hello, I'm <span>Jasmin</span></h1>
@@ -113,5 +111,6 @@ JAVA SCRIP.
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
