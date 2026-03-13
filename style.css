@@ -75,6 +75,13 @@ header {
 .nav-links a:hover {
   color: #3B82F6; /* accent */
 }
+.toggle-btn{
+  position:absolute;
+  right:30px;
+  cursor:pointer;
+  color:var(--primary);
+  font-size:18px;
+}
 
 /* Hero */
 .hero {
@@ -314,3 +321,4 @@ footer {
     font-size: 36px;
   }
 }
+
