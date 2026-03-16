@@ -125,6 +125,23 @@ label{display:block;margin-top:10px;}
 <h3>Total: ₹<span id="cart-total">0</span></h3>
 
 <button id="confirm-btn">✅ Confirm Order</button>
+</section>
+
+</section>
+</section>
+
+<section id="contact">
+
+<h2>Contact Us</h2>
+
+<p>Email us for support or bridal consultation</p>
+
+<p>
+📧 
+<a href="mailto:jassijatwar85@gmail.com">
+jassijatwar85@gmail.com
+</a>
+</p>
 
 </section>
 
@@ -284,10 +301,6 @@ p.stock--;
 
 document.getElementById(`stock-${id}`).textContent=p.stock;
 
-if(p.stock<=0){
-document.getElementById(`oos-${id}`).textContent="Out of Stock!";
-}
-
 renderCart();
 
 }
@@ -295,19 +308,16 @@ renderCart();
 function renderCart(){
 
 const list=document.getElementById("cart-items");
-
 list.innerHTML="";
 
 cart.forEach((c,index)=>{
 
 const li=document.createElement("li");
-
 li.className="cart-item";
 
 li.textContent=`${c.name} (${c.size}, ${c.color}) - ₹${formatINR(c.price)} `;
 
 const btn=document.createElement("button");
-
 btn.textContent="Remove";
 
 btn.onclick=()=>{
@@ -315,7 +325,6 @@ btn.onclick=()=>{
 total-=c.price;
 
 const prod=products.find(p=>p.id===c.id);
-
 prod.stock++;
 
 document.getElementById(`stock-${prod.id}`).textContent=prod.stock;
@@ -335,6 +344,59 @@ list.appendChild(li);
 document.getElementById("cart-total").textContent=formatINR(total);
 
 }
+
+document.getElementById("confirm-btn").addEventListener("click",()=>{
+
+const email=document.getElementById("customer-email").value;
+
+if(cart.length===0){
+alert("Cart is empty");
+return;
+}
+
+if(!email){
+alert("Please enter email");
+return;
+}
+
+alert("🎉 Order Confirmed Successfully!");
+
+generatePDF(email);
+
+cart=[];
+total=0;
+renderCart();
+
+});
+
+function generatePDF(email){
+
+const { jsPDF } = window.jspdf;
+
+const doc=new jsPDF();
+
+doc.setFontSize(18);
+doc.text("Elegant Bridal Boutique",20,20);
+
+doc.setFontSize(12);
+doc.text("Customer Email: "+email,20,35);
+
+let y=50;
+
+cart.forEach(item=>{
+
+doc.text(`${item.name} (${item.size}, ${item.color}) - ₹${formatINR(item.price)}`,20,y);
+
+y+=10;
+
+});
+
+doc.text("Total: ₹"+formatINR(total),20,y+10);
+
+doc.save("OrderConfirmation.pdf");
+
+}
+
 
 </script>
 
