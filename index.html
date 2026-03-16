@@ -1,15 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Developer Portfolio</title>
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root{
+  --bg-color:#0f172a;
+  --text-color:#ffffff;
+  --primary:#38bdf8;
+  --card-bg:rgba(255,255,255,0.08);
+}
+
+body.light{
+  --bg-color:#f1f5f9;
+  --text-color:#0f172a;
+  --primary:#2563eb;
+  --card-bg:rgba(0,0,0,0.08);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:linear-gradient(-45deg,#0f172a,#020617,#1e293b,#0f172a);
+  background-size:400% 400%;
+  animation:gradientBG 12s ease infinite;
+  color:var(--text-color);
+  text-align:center;
+}
+
+body.light{
+  background:linear-gradient(-45deg,#e2e8f0,#f8fafc,#cbd5e1,#f1f5f9);
+  background-size:400% 400%;
+}
+
+@keyframes gradientBG{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* NAVBAR */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:20px;
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  backdrop-filter:blur(10px);
+  background:rgba(0,0,0,0.3);
+  z-index:1000;
+  box-shadow:0 5px 20px rgba(0,0,0,0.4);
+}
+
+nav a{
+  text-decoration:none;
+  color:var(--text-color);
+  font-weight:500;
+  position:relative;
+}
+
+nav a.active::after{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:2px;
+  background:var(--primary);
+  left:0;
+  bottom:-5px;
+}
+
+.toggle-btn{
+  position:absolute;
+  right:30px;
+  cursor:pointer;
+  color:var(--primary);
+  font-size:18px;
+}
+
+/* SECTIONS */
+section{
+  min-height:100vh;
+  padding:120px 10%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:30px;
+  box-shadow:inset 0 0 40px rgba(0,0,0,0.2);
+}
+
+/* HOME */
+h1 span{
+  color:var(--primary);
+}
+
+.btn{
+  padding:12px 30px;
+  background:var(--primary);
+  color:#000;
+  border-radius:30px;
+  text-decoration:none;
+  transition:0.3s;
+  box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+
+.btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 12px 25px rgba(0,0,0,0.6);
+}
+
+/* SKILLS */
+.skill-box{
+  width:300px;
+  text-align:left;
+}
+
+.progress{
+  height:8px;
+  background:#444;
+  border-radius:10px;
+  margin-top:5px;
+  overflow:hidden;
+  box-shadow:inset 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.progress div{
+  height:100%;
+  width:0;
+  background:var(--primary);
+  transition:2s;
+  box-shadow:0 0 10px var(--primary);
+}
+
+/* PROJECTS */
+.projects{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:30px;
+}
+
+.card{
+  width:300px;
+  padding:20px;
+  border-radius:20px;
+  background:var(--card-bg);
+  backdrop-filter:blur(15px);
+  border:1px solid rgba(255,255,255,0.1);
+  transition:0.4s;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 15px 40px rgba(0,0,0,0.7);
+}
+
+.card img{
+  width:100%;
+  border-radius:15px;
+}
+
+.view-btn{
+  display:inline-block;
+  margin-top:15px;
+  padding:8px 20px;
+  background:var(--primary);
+  border-radius:20px;
+  text-decoration:none;
+  color:#000;
+  box-shadow:0 6px 15px rgba(0,0,0,0.5);
+}
+
+.view-btn:hover{
+  box-shadow:0 10px 25px rgba(0,0,0,0.7);
+}
+
+/* SOCIAL */
+.social{
+  display:flex;
+  gap:25px;
+  font-size:22px;
+}
+
+.social a{
+  color:var(--primary);
+  transition:0.3s;
+  text-shadow:0 0 10px rgba(0,0,0,0.7);
+}
+
+.social a:hover{
+  transform:scale(1.3);
+  text-shadow:0 0 20px var(--primary);
+}
+
+/* CONTACT */
+form{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  width:300px;
+}
+
+input,textarea{
+  padding:10px;
+  border-radius:5px;
+  border:none;
+  box-shadow:0 5px 15px rgba(0,0,0,0.4);
+}
+
+button{
+  padding:10px;
+  border:none;
+  background:var(--primary);
+  border-radius:5px;
+  cursor:pointer;
+  box-shadow:0 6px 15px rgba(0,0,0,0.5);
+}
+
+button:hover{
+  box-shadow:0 10px 25px rgba(0,0,0,0.7);
+}
+
+footer{
+  padding:20px;
+  box-shadow:0 -5px 20px rgba(0,0,0,0.4);
+}
+</style>
 </head>
 <body>
 
-<header>
-  <nav>
+<nav>
   <a href="#home" class="active">Home</a>
   <a href="#about">About</a>
   <a href="#skills">Skills</a>
@@ -20,101 +254,96 @@
   </div>
 </nav>
 
+<section id="home">
+  <h1>Hello, I'm <span>Jasmin</span></h1>
+  <p>Frontend Developer | UI Designer | JavaScript Enthusiast</p>
+  <a href="#projects" class="btn">View My Work</a>
+</section>
 
-  <div class="hero fade-in">
-    <h1>Hello, I'm <span>Jasmin</span></h1>
-    <p>Frontend Developer • Designer • Problem Solver</p>
-    <a class="btn" href="#projects">View My Work</a>
+<section id="about">
+  <h2>About Me</h2>
+  <p>Hello! I'm Self-taught web developer from Ambala City, Haryana, driven by creativity, curiosity, and the joy of turning ideas into real web experiences. I enjoy crafting clean, responsive, and user-friendly interfaces that bring designs to life. Every project I build is a chance to learn something new, solve problems smarter, and create something meaningful. Passionate about technology, design, and continuous improvement, I strive to grow a little every day—one line of code at a time.</p>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+
+  <div class="skill-box">
+    HTML
+    <div class="progress"><div style="width:95%"></div></div>
   </div>
-</header>
 
-<section id="about" class="section">
-  <h2 class="section-title slide-up">About Me</h2>
-  <div class="content">
-    <div class="about-img">
-      <img src="https://media.licdn.com/dms/image/v2/D4E12AQHPVd25AEvb3w/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1688715117605?e=2147483647&v=beta&t=D62-k8CtI1eJBm-RvKzkoUH_5mKSot796lXKYiXuEIk" alt="Profile Image">
-    </div>
-    <div class="about-text">
-      <h2>Who Am I?</h2>
-      <p>HELLO! I'm Jasmin.I am from Ambala City Haryana.I am passionate about learning new technologies and designing websites.My goal is to become a successful web developer in the future.
+  <div class="skill-box">
+    CSS
+    <div class="progress"><div style="width:90%"></div></div>
+  </div>
 
-Skills & Technologies
-HTML
-CSS
-JAVA SCRIP.
-</p>
-    </div>
+  <div class="skill-box">
+    JavaScript
+    <div class="progress"><div style="width:85%"></div></div>
   </div>
 </section>
 
-<section id="projects" class="section bg-light">
-  <h2 class="section-title slide-up">Projects</h2>
-  <div class="projects-grid fade-in">
-    <div class="project-card">
-      <div class="image-container">
-        <img src="https://cdn.vectorstock.com/i/500p/77/25/monochrome-wedding-dress-logo-vector-25227725.jpg" alt="project 1">
-        <div class="overlay">
-          <a href="main.html" class="hover-btn">View Project</a>
-        </div>
-        <h3>Elegant Bridal Boutique</h3>
-        <p>Elegant Bridal Boutique is a shop that specializes in beautiful bridal dresses and wedding outfits.It offers a wide variety of gowns, lehengas, and accessories for brides.
-The boutique focuses on stylish designs and high-quality fabrics.</p>
-      </div>
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects">
+
+    <div class="card">
+      <img src="https://cdn.vectorstock.com/i/500p/77/25/monochrome-wedding-dress-logo-vector-25227725.jpg">
+      <h3>Main Project</h3>
+      <a href="main.html" class="view-btn">View Project</a>
     </div>
 
-    <div class="project-card">
-      <div class="image-container">
-        <img src="https://play-lh.googleusercontent.com/frXZIrKjkAdSiqVqEjhLex5qSMyAsV4bdiMz3gL1LVl-42emWbFtUpcYPGbt51MmfCui=w600-h300-pc0xffffff-pd" alt="project 2">
-        <div class="overlay">
-          <a href="mini.html" class="hover-btn">View Project</a>
-        </div>
-        <h3>Memory Game</h3>
-         <p>A memory game is a fun activity that helps improve concentration and remembering skills.
-Players try to match pairs of cards or remember the positions of pictures.
-It is a great game for training the brain and improving memory. 🧠🎮</p>
-      </div>
+    <div class="card">
+      <img src="https://play-lh.googleusercontent.com/frXZIrKjkAdSiqVqEjhLex5qSMyAsV4bdiMz3gL1LVl-42emWbFtUpcYPGbt51MmfCui=w600-h300-pc0xffffff-pd">
+      <h3>Minor Project 1</h3>
+      <a href="mini.html" class="view-btn">View Project</a>
     </div>
-    <div class="project-card">
-      <div class="image-container">
-        <img src="https://m.media-amazon.com/images/I/61L93h-52VL.png" alt="project 3">
-        <div class="overlay">
-          <a href="project.html" class="hover-btn">View Project</a>
-          </div>
-          <h3>Music player</h3>
-        <p>A music player is a device or app used to play songs and audio.It allows people to listen to their favorite music anytime.
-Music players help us relax and enjoy different types of music. 🎵📱</p>
-      </div>
+
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/61L93h-52VL.png">
+      <h3>Minor Project 2</h3>
+      <a href="project.html" class="view-btn">View Project</a>
     </div>
+
   </div>
 </section>
 
-<section id="skills" class="section">
-  <h2 class="section-title slide-up">Skills</h2>
-  <div class="skills-grid fade-in">
-    <div class="skill">HTML</div>
-    <div class="skill">CSS</div>
-    <div class="skill">JavaScript</div>
-  </div>
-</section>
-
-<section id="contact" class="section">
-  <h2 class="section-title slide-up">Contact</h2>
-  <form class="contact-form fade-in">
-    <input type="text" placeholder="Your Name" required>
-    <input type="email" placeholder="Your Email" required>
-    <textarea rows="5" placeholder="Your Message" required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
+<!-- ===== Contact Section ===== -->
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: jassijatwar46@gmail.com</p>
 </section>
 
 <footer>
-  © 2025 My Portfolio. All rights reserved.
+  © 2026 Jasmin | Professional Portfolio
 </footer>
 
-<script src="theme.js"></script>
-<script src="script.js"></script>
+<script>
+function toggleMode(){
+  document.body.classList.toggle("light");
+}
+
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll",()=>{
+  let current="";
+  sections.forEach(section=>{
+    const sectionTop = section.offsetTop - 150;
+    if(pageYOffset >= sectionTop){
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(link=>{
+    link.classList.remove("active");
+    if(link.getAttribute("href") === "#"+current){
+      link.classList.add("active");
+    }
+  });
+});
+</script>
+
 </body>
 </html>
-
-
-
